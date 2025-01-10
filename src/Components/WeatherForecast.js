@@ -11,7 +11,13 @@ const WeatherForecast = ({ data }) => {
       <div className="forecast-list">
         {hourly.map((hour, index) => (
           <div key={index} className="forecast-item">
-            <p>{new Date(hour.dt * 1000).getHours()}:00</p>
+            <p>
+              {new Date(hour.dt * 1000).toLocaleTimeString("en-US", {
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+              })}
+            </p>
             <img
               src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
               alt={hour.weather[0].description}
