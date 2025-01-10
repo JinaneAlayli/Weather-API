@@ -2,8 +2,8 @@ import React from "react";
 import "./WeatherForecast.css";
 
 const WeatherForecast = ({ data }) => {
-  const hourly = data.list.slice(0, 8); // First 8 entries for hourly forecast
-  const daily = data.list.filter((item, index) => index % 8 === 0); // Approx. one entry per day
+  const hourly = data.list.slice(0, 8); 
+  const daily = data.list.filter((item, index) => index % 8 === 0);  
 
   return (
     <div className="weather-forecast">
