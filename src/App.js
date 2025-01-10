@@ -43,7 +43,7 @@ function App() {
     );
   }, []);
  
-  const handleSearch = (city) => {
+  const SearchByCity = (city) => {
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
     )
@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar handleSearch={handleSearch} />
+      <SearchBar SearchByCity={SearchByCity} />
       {currentWeather && <WeatherNow data={currentWeather} />}
       {forecast && <WeatherForecast data={forecast} />}
     </div>
