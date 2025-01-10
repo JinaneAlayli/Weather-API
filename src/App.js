@@ -26,8 +26,6 @@ function App() {
       }
       else{ setCurrentWeather(weatherData);}
 
-     
-
       const forecastResponse = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
       );

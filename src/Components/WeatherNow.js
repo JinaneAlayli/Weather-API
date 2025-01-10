@@ -2,7 +2,7 @@ import React from "react";
 import "./WeatherNow.css";
 
 const WeatherNow = ({ data }) => {
-  const { main, weather, name } = data;
+  const { main, weather, name,wind } = data;
 
   return (
     <div className="weather-now">
@@ -16,6 +16,8 @@ const WeatherNow = ({ data }) => {
         <h2>Weather in {name}</h2>
         <p>{weather[0].description}</p>
         <h1>{main.temp}°C</h1>
+        <p>Humidity: {main.humidity}%</p> 
+        <p>Wind Speed: {wind.speed} m/s</p>  
       </div>
     </div>
   );
