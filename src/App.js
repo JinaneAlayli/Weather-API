@@ -8,6 +8,7 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [location, setLocation] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
  
@@ -17,7 +18,15 @@ function App() {
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
       );
       const weatherData = await weatherResponse.json();
-      setCurrentWeather(weatherData);
+
+      if (weatherData.cod !== 200) {
+    
+        setErrorMessage("Sorry, the city was not found.");
+        return;  
+      }
+      else{ setCurrentWeather(weatherData);}
+
+     
 
       const forecastResponse = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
@@ -26,6 +35,7 @@ function App() {
       setForecast(forecastData);
     } catch (error) {
       console.error("Error fetching weather data:", error);
+      setErrorMessage("Sorry, the city was not found.");
     }
   };
  
@@ -38,7 +48,7 @@ function App() {
       },
       (error) => {
         console.error("Error getting location:", error); 
-        fetchWeatherData(51.5074, -0.1278);
+        setErrorMessage("Sorry, location permission is denied.");
       }
     );
   }, []);
@@ -52,12 +62,19 @@ function App() {
         setCurrentWeather(data);
         const { lon, lat } = data.coord;
         fetchWeatherData(lat, lon);
+        setErrorMessage("");
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        setCurrentWeather(null);
+        setForecast(null);
+        console.error(err);
+        setErrorMessage("Sorry, the city was not found.");
+      });
   };
 
   return (
     <div className="app">
+      {errorMessage && <div className="error-message">{errorMessage}</div>} 
       <SearchBar SearchByCity={SearchByCity} />
       {currentWeather && <WeatherNow data={currentWeather} />}
       {forecast && <WeatherForecast data={forecast} />}

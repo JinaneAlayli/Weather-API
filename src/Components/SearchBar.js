@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 
-const SearchBar = ({ handleSearch }) => {
+const SearchBar = ({ SearchByCity }) => {
   const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
