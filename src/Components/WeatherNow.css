@@ -1,0 +1,34 @@
+.weather-now {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #508baa;
+    color: white;
+    border-radius: 15px;
+  }
+  
+  .weather-now .icon img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .weather-now .details {
+    padding-left: 20px;
+    text-align: left;
+  }
+  
+  .weather-now h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .weather-now p {
+    font-size: 18px;
+  }
+  
+  .weather-now h1 {
+    font-size: 50px;
+    margin: 10px 0;
+  }
+  

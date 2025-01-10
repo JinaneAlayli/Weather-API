@@ -1,0 +1,46 @@
+.weather-forecast {
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    margin-top: 20px;
+  }
+  
+  .weather-forecast h3 {
+    font-size: 20px;
+    text-align: center;
+    color: #0B1E28;
+  }
+  
+  .forecast-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  
+  .forecast-item {
+    text-align: center;
+    width: 100px;
+    margin: 10px;
+  }
+  
+  .forecast-item p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .forecast-item img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .forecast-item p:nth-child(2) {
+    font-weight: bold;
+  }
+  
+  hr {
+    border: 1px solid #0B1E28;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  

@@ -18,7 +18,7 @@ const SearchBar = ({ SearchByCity }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button type="submit">Search</button>
+        <button type="submit">🔍</button>
       </form>
     </div>
   );
