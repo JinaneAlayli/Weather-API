@@ -39,3 +39,8 @@ button:hover {
   transform: scale(1.4);   
 }
  
+@media (max-width: 768px) {
+  input {
+    width:200px;
+  }
+}

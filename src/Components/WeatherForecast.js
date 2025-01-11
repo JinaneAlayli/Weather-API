@@ -1,9 +1,18 @@
 import React from "react";
 import "./WeatherForecast.css";
 
-const WeatherForecast = ({ data }) => {
-  const hourly = data.list.slice(0, 8); 
-  const daily = data.list.filter((item, index) => index % 8 === 0);  
+const WeatherForecast = ({ data, cityTime }) => {
+  const hourly = data.list.slice(1, 8); // Skip the first item, now taking hours from index 1 to 7
+  const daily = data.list.filter((item, index) => index % 8 === 0);
+
+  const formatCityTime = (timeOffset) => {
+    const localTime = new Date(cityTime.getTime() + timeOffset * 1000);
+    return localTime.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+  };
 
   return (
     <div className="weather-forecast">
@@ -11,13 +20,7 @@ const WeatherForecast = ({ data }) => {
       <div className="forecast-list">
         {hourly.map((hour, index) => (
           <div key={index} className="forecast-item">
-            <p>
-              {new Date(hour.dt * 1000).toLocaleTimeString("en-US", {
-                hour: "numeric",
-                minute: "numeric",
-                hour12: true,
-              })}
-            </p>
+            <p>{formatCityTime(hour.dt)}</p> {/* Adjusted for cityTime */}
             <img
               src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
               alt={hour.weather[0].description}
