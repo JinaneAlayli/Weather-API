@@ -1,9 +1,15 @@
 import React from "react";
 import "./WeatherNow.css";
 
-const WeatherNow = ({ data }) => {
-  const { main, weather, name, wind } = data;
-
+const WeatherNow = (props) => {
+  const { main, weather, name, wind,sys} =props.data;//const main= props.data.main;
+  const formatTime = (timestamp) => {
+    return new Date(timestamp * 1000).toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+  };
   return (
     <div className="weather-now">
       <div>
@@ -20,8 +26,8 @@ const WeatherNow = ({ data }) => {
       </div>
       <div className="more-details">
         <h2>More Details</h2>
-        <p>🌅 Sunrise: 05:45</p>
-        <p>🌄 Sunset: 18:30</p> 
+        <p>🌅 Sunrise: {formatTime(sys.sunrise)}</p>
+        <p>🌄 Sunset: {formatTime(sys.sunset)}</p> 
         <p>💨 Wind Speed: {wind.speed} m/s</p>
         <p>💧 Humidity: {main.humidity}%</p>
         

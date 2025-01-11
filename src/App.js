@@ -8,7 +8,7 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [location, setLocation] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [background, setBackground] = useState("");
 
@@ -36,7 +36,7 @@ function App() {
         } else if (weatherCondition === "rain") {
           setBackground("rainy");
         } else {
-          setBackground("sunny"); // Default
+          setBackground("sunny"); 
         }
       } 
       
@@ -84,7 +84,7 @@ function App() {
         setErrorMessage("Sorry, the city was not found.");
       });
   };
-
+//&& if errorMEssage!="" show error 
   return (
     <div className={`app ${background}`}> 
       {errorMessage && <div className="error-message">{errorMessage}</div>} 

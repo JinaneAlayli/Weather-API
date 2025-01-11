@@ -23,4 +23,3 @@ const SearchBar = ({ SearchByCity }) => {
 };
 
 export default SearchBar;
-
