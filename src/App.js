@@ -10,6 +10,8 @@ function App() {
   const [location, setLocation] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const [background, setBackground] = useState("");
+
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
  
   const fetchWeatherData = async (lat, lon) => {
@@ -24,7 +26,20 @@ function App() {
         setErrorMessage("Sorry, the city was not found.");
         return;  
       }
-      else{ setCurrentWeather(weatherData);}
+      else{ 
+        setCurrentWeather(weatherData);
+        const weatherCondition = weatherData.weather[0].main.toLowerCase();
+        if (weatherCondition === "clear") {
+          setBackground("sunny");
+        } else if (weatherCondition === "clouds") {
+          setBackground("cloudy");
+        } else if (weatherCondition === "rain") {
+          setBackground("rainy");
+        } else {
+          setBackground("sunny"); // Default
+        }
+      } 
+      
 
       const forecastResponse = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
@@ -71,7 +86,7 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className={`app ${background}`}> 
       {errorMessage && <div className="error-message">{errorMessage}</div>} 
       <SearchBar SearchByCity={SearchByCity} />
       {currentWeather && <WeatherNow data={currentWeather} />}

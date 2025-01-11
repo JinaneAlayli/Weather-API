@@ -1,34 +1,57 @@
 .weather-now {
-    display: flex;
-    justify-content: center;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  background-color: #3133365b;  
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.764);  
+  width: 50%;  
+  gap:100px;
+}
+.weather-now img {
+  width: 150px;  
+  height: 150px;
+ }
+
+.weather-now .details {
+  flex: 2;
+  padding-left: 30px;
+}
+
+.weather-now h2 {
+  font-size: 30px; 
+  font-weight: bold;
+  color: #ffcf33; 
+}
+
+.weather-now p {
+  font-size: 18px;
+  color: #eceaea;  
+}
+
+.weather-now h1 {
+  font-size: 70px; 
+  margin: 15px 0;
+  color: #ffcf33; 
+}
+
+.weather-now .more-details h2 {
+  font-size: 22px;  
+  color: white; 
+}
+
+.weather-now .more-details p {
+  font-size: 16px;
+  color: #fffcfcd8;
+}
+ 
+@media (max-width: 768px) {
+  .weather-now {
+    flex-direction: column; 
     align-items: center;
-    padding: 30px;
-    background-color: #508baa;
-    color: white;
-    border-radius: 15px;
+    gap: 20px;
+    width: 100%; 
+    align-items: flex-start;
   }
-  
-  .weather-now .icon img {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .weather-now .details {
-    padding-left: 20px;
-    text-align: left;
-  }
-  
-  .weather-now h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .weather-now p {
-    font-size: 18px;
-  }
-  
-  .weather-now h1 {
-    font-size: 50px;
-    margin: 10px 0;
-  }
-  
+}
