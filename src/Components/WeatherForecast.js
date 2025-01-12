@@ -40,7 +40,7 @@ const WeatherForecast = ({ data }) => {
               src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
               alt={hour.weather[0].description}
             />
-            <p>{hour.main.temp}°C</p>
+            <p>{Math.round(hour.main.temp)}°C</p>
           </div>
         ))}
       </div>
@@ -58,7 +58,7 @@ const WeatherForecast = ({ data }) => {
               src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
               alt={day.weather[0].description}
             />
-            <p>{day.main.temp}°C</p>
+            <p>{Math.round(day.main.temp)}°C</p>
           </div>
         ))}
       </div>

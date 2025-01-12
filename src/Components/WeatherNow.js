@@ -25,8 +25,8 @@ const WeatherNow = (props) => {
           <h2>{name}</h2> 
           <h3>🕒 {new Date(props.cityTime).toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric", hour12: true })}</h3>
  
-          <h1>{main.temp}°C</h1>
-          <p>Feels like: {main.feels_like}°C</p>
+          <h1>{Math.round(main.temp)}°C</h1>
+          <p>Feels like: {Math.round(main.feels_like)}°C</p>
           <p>{weather[0].description}</p>
         </div>
       </div>
