@@ -1,18 +1,14 @@
 import React from "react";
 import "./WeatherForecast.css";
 
-const WeatherForecast = ({ data }) => {
-  // Helper function to format city time
-  const formatCityTime = (timestamp, timezoneOffset) => {
-    const localTime = new Date((timestamp + timezoneOffset) * 1000);
-    return localTime.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    });
-  };
+const WeatherForecast = (props) => {
+  const { data, cityTime } = props;
 
-  // Group forecast data by day
+   
+  if (!data || !data.list) {
+    return <div>Loading forecast...</div>;
+  }
+ 
   const groupByDay = (list) => {
     const grouped = {};
     list.forEach((item) => {
@@ -20,14 +16,14 @@ const WeatherForecast = ({ data }) => {
         weekday: "long",
       });
       if (!grouped[date]) {
-        grouped[date] = item; // First forecast for the day
+        grouped[date] = item;  
       }
     });
     return Object.values(grouped);
   };
 
-  const hourly = data.list.slice(0, 7); // Display next 7 hours
-  const daily = groupByDay(data.list); // Group by day dynamically
+  const hourly = data.list.slice(0, 7);  
+  const daily = groupByDay(data.list);  
 
   return (
     <div className="weather-forecast">
@@ -35,7 +31,16 @@ const WeatherForecast = ({ data }) => {
       <div className="forecast-list">
         {hourly.map((hour, index) => (
           <div key={index} className="forecast-item">
-            <p>{formatCityTime(hour.dt, data.city.timezone)}</p>
+            <p>
+              {new Date(cityTime.getTime() + (hour.dt - data.list[0].dt) * 1000).toLocaleTimeString(
+                "en-US",
+                {
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                }
+              )}
+            </p>
             <img
               src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
               alt={hour.weather[0].description}
@@ -50,9 +55,12 @@ const WeatherForecast = ({ data }) => {
         {daily.map((day, index) => (
           <div key={index} className="forecast-item">
             <p>
-              {new Date((day.dt + data.city.timezone) * 1000).toLocaleDateString("en-US", {
-                weekday: "long",
-              })}
+              {new Date(cityTime.getTime() + (day.dt - data.list[0].dt) * 1000).toLocaleDateString(
+                "en-US",
+                {
+                  weekday: "long",
+                }
+              )}
             </p>
             <img
               src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}

@@ -98,7 +98,7 @@ function App() {
           throw new Error("City not found");
         }
         setCurrentWeather(data);
-
+        
         const { lon, lat } = data.coord;
         fetchWeatherForecast(lat, lon);
         setErrorMessage("");
