@@ -3,11 +3,6 @@ import "./WeatherForecast.css";
 
 const WeatherForecast = (props) => {
   const { data, cityTime } = props;
-
-   
-  if (!data || !data.list) {
-    return <div>Loading forecast...</div>;
-  }
  
   const groupByDay = (list) => {
     const grouped = {};
